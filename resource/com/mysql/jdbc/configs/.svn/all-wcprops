@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/configs
+END
+maxPerformance.properties
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/configs/maxPerformance.properties
+END
+clusterBase.properties
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/configs/clusterBase.properties
+END
+3-0-Compat.properties
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/configs/3-0-Compat.properties
+END
+coldFusion.properties
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/configs/coldFusion.properties
+END
+5-0-Compat.properties
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/configs/5-0-Compat.properties
+END
+solarisMaxPerformance.properties
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/configs/solarisMaxPerformance.properties
+END
+fullDebug.properties
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/configs/fullDebug.properties
+END

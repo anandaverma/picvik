@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources"
+		value="ApplicationResources" />
+	<constant name="struts.multipart.maxSize" value="1009715200" />
+
+	<package name="default" extends="struts-default" namespace="/">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		
+		<interceptors>
+            <interceptor name="nlogin" class="com.picvik.interceptor.LoginInterceptor"/>
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="nlogin"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload" />
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation"/>
+                <interceptor-ref name="workflow"/>
+            </interceptor-stack>
+        </interceptors>
+        
+        <!-- <default-interceptor-ref name="loginStack"/>  -->
+       
+        <global-results>
+            <result name="login" type="tiles">/login.tiles</result>
+        </global-results>
+
+		
+		<action name="home" 
+			class="com.picvik.action.HomeAction">
+			<result name="success" type="tiles">/home.tiles</result>
+			<result name="error" type="tiles">/welcome.tiles</result>
+		</action>
+		<action name="registration" 
+			class="com.picvik.action.RegisterAction" method="execute">
+			<result name="success" type="tiles">/register.tiles</result>
+		</action>
+		<action name="register" 
+			class="com.picvik.action.RegisterAction" method="register">
+			<result name="success" type="tiles">/registerverify.tiles</result>
+			<result name="error" type="tiles">/register.tiles</result>
+			<result name="input" type="tiles">/register.tiles</result>
+		</action>
+		<action name="verify" 
+			class="com.picvik.action.RegisterAction" method="verify">
+			<result name="success" type="tiles">/login.tiles</result>
+			<result name="error" type="tiles">/registerverify.tiles</result>
+		</action>
+        
+         <action name="login" class="com.picvik.action.LoginAction">
+            <result name="success" type="redirectAction">/home.tiles</result>
+            <result name="input" type="tiles">/login.tiles</result>
+        </action>
+        
+        <action name="dologin" class="com.picvik.action.LoginAction" method="login">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="redirectAction">
+            <param name="actionName">home</param>
+            </result>
+            <result name="input" type="tiles">/login.tiles</result>
+        </action>
+
+        <action name="logout" class="com.picvik.action.LoginAction" method="logout">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="tiles">/login.tiles</result>
+        </action>
+        
+        <action name="viewprofile" class="com.picvik.action.ViewProfileAction">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="tiles">/viewprofile.tiles</result>
+        </action>
+        <action name="publicstream" class="com.picvik.action.StreamAction">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="tiles">/publicstream.tiles</result>
+        </action>
+        <action name="editprofile" class="com.picvik.action.ViewProfileAction">
+            <interceptor-ref name="loginStack"/>
+            <interceptor-ref name="store">
+       		<param name="operationMode">RETRIEVE</param>
+     		</interceptor-ref>
+
+            <result name="success" type="tiles">/editprofile.tiles</result>
+        </action>
+        <action name="saveprofile" class="com.picvik.action.ViewProfileAction" method = "saveProfile">
+			          
+            <interceptor-ref name="store">
+       		<param name="operationMode">STORE</param>
+     		</interceptor-ref>
+			<interceptor-ref name="loginStack"/> 
+            <result name="success" type="tiles">/home.tiles</result>
+            <result name="input" type="redirectAction">
+			<param name="actionName">editprofile</param>
+			</result>
+        </action>
+        
+        <action name="changeprofilephoto" class="com.picvik.action.ChangeProfilePhotoAction">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="tiles">/changephoto.tiles</result>
+            <result name="input" type="tiles">/changephoto.tiles</result>
+        </action>
+        
+        <action name="uploadprofilephoto"
+    			class="com.picvik.action.ChangeProfilePhotoAction" method="uploadProfilePhoto">
+   			 <interceptor-ref name="fileUpload">
+        		<param name="maximumSize">2097152</param>
+        		<param name="allowedTypes">
+            		image/png,image/gif,image/jpeg,image/pjpeg
+       			</param>
+   			</interceptor-ref>
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">viewprofile</param>
+			</result>
+   			<result name="input" type="tiles">/changephoto.tiles</result>
+		</action>
+		<!-- video upload-->
+		<action name="videouploader"
+    			class="com.picvik.action.UploadVideoAction" method="execute">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/videoupload.tiles</result>
+		</action>
+		
+		<action name="uploadvideo"
+    			class="com.picvik.action.UploadVideoAction" method="uploadVideo">
+   			 <interceptor-ref name="fileUpload">
+        		<param name="maximumSize">209715200</param>
+        		<param name="allowedTypes">
+            		video/mp4
+       			</param>
+   			</interceptor-ref>
+   			<interceptor-ref name="loginStack"></interceptor-ref>
+   			
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">editvideo</param>
+			</result>
+   			<result name="input" type="tiles">/videoupload.tiles</result>
+		</action>
+		<action name="editvideo"
+    			class="com.picvik.action.UploadVideoAction" method="editVideo">
+    		
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<interceptor-ref name="store">
+       		<param name="operationMode">RETRIEVE</param>
+     		</interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">home</param>
+			</result>
+   			<result name="input" type="tiles">/editvideo.tiles</result>
+		</action>
+		<action name="savevideos"
+    			class="com.picvik.action.UploadVideoAction" method="saveVideo">
+    		<interceptor-ref name="store">
+       		<param name="operationMode">STORE</param>
+     		</interceptor-ref>
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">listchannel</param>
+			</result>
+   			<result name="input" type= "redirectAction">
+				<param name="actionName">editvideo</param>
+			</result>
+		</action>
+		
+		
+		<!-- video upload ends here-->
+		
+		<!-- photo upload -->
+		<action name="photouploader"
+    			class="com.picvik.action.UploadPhotoAction">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/photoupload.tiles</result>
+		</action>
+		
+		<action name="uploadphoto"
+    			class="com.picvik.action.UploadPhotoAction" method="uploadPhoto">
+   			 <interceptor-ref name="fileUpload">
+        		<param name="maximumSize">20971520</param>
+        		<param name="allowedTypes">
+            		image/png,image/gif,image/jpeg,image/pjpeg
+       			</param>
+   			</interceptor-ref>
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">editphoto</param>
+			</result>
+   			<result name="input" type="tiles">/photoupload.tiles</result>
+		</action>
+		
+		<action name="editphoto"
+    			class="com.picvik.action.UploadPhotoAction" method="editPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<interceptor-ref name="store">
+       		<param name="operationMode">RETRIEVE</param>
+     		</interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">home</param>
+			</result>
+   			<result name="input" type="tiles">/editphoto.tiles</result>
+		</action>
+		<action name="savephotos"
+    			class="com.picvik.action.UploadPhotoAction" method="savePhoto">
+    		<interceptor-ref name="store">
+       		<param name="operationMode">STORE</param>
+     		</interceptor-ref>
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">listalbum</param>
+			</result>
+   			<result name="input" type= "redirectAction">
+				<param name="actionName">editphoto</param>
+			</result>
+		</action>
+		
+		<action name="listalbum"
+    			class="com.picvik.action.ViewAlbumAction" method="listAlbum">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listalbum.tiles</result>
+		</action>
+		
+		<action name="listphoto"
+    			class="com.picvik.action.ViewAlbumAction" method="listPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listphoto.tiles</result>
+		</action>
+		
+		<action name="listalbumphoto"
+    			class="com.picvik.action.ViewAlbumAction" method="listAlbumPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listalbumphoto.tiles</result>
+		</action>
+		
+		<action name="viewphoto"
+    			class="com.picvik.action.ViewAlbumAction" method="viewPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/viewphoto.tiles</result>
+		</action>
+		
+		<action name="commentonphoto"
+    			class="com.picvik.action.CommentAction" method="commentOnPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "redirectAction">
+				<param name="actionName">viewphoto</param>
+				<param name="pictureid">${mediaid}</param>
+			</result>
+		</action>
+		
+		<action name="commentonalbum"
+    			class="com.picvik.action.CommentAction" method="commentOnAlbum">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "redirectAction">
+				<param name="actionName">listalbum</param>
+			</result>
+		</action>
+		<!-- video operations -->
+		<action name="listchannel"
+    			class="com.picvik.action.ViewChannelAction" method="listChannel">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listchannel.tiles</result>
+		</action>
+		 
+		<action name="listvideo"
+    			class="com.picvik.action.ViewChannelAction" method="listVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listvideo.tiles</result>
+		</action>
+		
+		<action name="listchannelvideo"
+    			class="com.picvik.action.ViewChannelAction" method="listChannelVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listchannelvideo.tiles</result>
+		</action>
+		
+		<action name="viewvideo"
+    			class="com.picvik.action.ViewChannelAction" method="viewVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/viewvideo.tiles</result>
+		</action>
+		
+		<action name="commentonvideo"
+    			class="com.picvik.action.CommentAction" method="commentOnVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "redirectAction">
+				<param name="actionName">viewvideo</param>
+				<param name="vidid">${mediaid}</param>
+			</result>
+		</action>
+		
+		<action name="commentonchannel"
+    			class="com.picvik.action.CommentAction" method="commentOnChannel">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "redirectAction">
+				<param name="actionName">listchannel</param>
+			</result>
+		</action>
+		<!-- video operations -->
+		<!-- explore photo operations -->
+		<action name="explorealbum"
+    			class="com.picvik.action.ViewAlbumAction" method="exploreAlbum">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/explorealbums.tiles
+			</result>
+		</action>
+		<action name="explorephoto"
+    			class="com.picvik.action.ViewAlbumAction" method="explorePhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/explorephotos.tiles
+			</result>
+		</action>
+		<action name="viewpublicphoto"
+    			class="com.picvik.action.ViewAlbumAction" method="viewPublicPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/viewpublicphotos.tiles
+			</result>
+		</action>
+		<action name="explorealbumphoto"
+    			class="com.picvik.action.ViewAlbumAction" method="exploreAlbumPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/explorealbumphotos.tiles
+			</result>
+		</action>
+		<!-- explore photo operations -->
+		<!-- explore video operations -->
+		<action name="explorechannel"
+    			class="com.picvik.action.ViewChannelAction" method="exploreChannel">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/explorechannels.tiles
+			</result>
+		</action>
+		<action name="explorevideo"
+    			class="com.picvik.action.ViewChannelAction" method="exploreVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/explorevideos.tiles
+			</result>
+		</action>
+		<action name="viewpublicvideo"
+    			class="com.picvik.action.ViewChannelAction" method="viewPublicVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/viewpublicvideos.tiles
+			</result>
+		</action>
+		<action name="explorechannelvideo"
+    			class="com.picvik.action.ViewChannelAction" method="exploreChannelVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/explorechannelvideos.tiles
+			</result>
+		</action>
+		<!-- explore video operations -->
+		
+		<!-- admin -->
+		<action name="adminlogin" class="com.picvik.action.LoginAction" method="adminLogin">
+            <result name="input" type="tiles">/admin.tiles</result>
+        </action>
+        
+        <action name="doadminlogin" class="com.picvik.action.LoginAction" method="doAdminLogin">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="redirectAction">
+            <param name="actionName">manageuser</param>
+            </result>
+            <result name="input" type="tiles">/admin.tiles</result>
+        </action>
+
+        <action name="adminlogout" class="com.picvik.action.LoginAction" method="adminLogout">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="tiles">/admin.tiles</result>
+        </action>
+        <action name="manageuser"
+    			class="com.picvik.action.AdminAction" method="manageUser">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/manageuser.tiles
+			</result>
+		</action>
+		<action name="banuser"
+    			class="com.picvik.action.AdminAction" method="banUser">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="redirectAction">
+            <param name="actionName">manageuser</param>
+            </result>
+		</action>
+		<action name="deleteuser"
+    			class="com.picvik.action.AdminAction" method="deleteUser">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="redirectAction">
+            <param name="actionName">manageuser</param>
+			</result>
+		</action>
+		<action name="allowuser"
+    			class="com.picvik.action.AdminAction" method="allowUser">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="redirectAction">
+            <param name="actionName">manageuser</param>
+			</result>
+		</action>
+		<action name="activateuser"
+    			class="com.picvik.action.AdminAction" method="activateUser">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="redirectAction">
+            <param name="actionName">manageuser</param>
+			</result>
+		</action>
+		<action name="managephoto"
+    			class="com.picvik.action.ManageMediaAction" method="managePhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/managephoto.tiles
+			</result>
+		</action>
+		<action name="deletephoto"
+    			class="com.picvik.action.ManageMediaAction" method="deletePhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="redirectAction">
+            <param name="actionName">managephoto</param>
+			</result>
+		</action>
+		<action name="managevideo"
+    			class="com.picvik.action.ManageMediaAction" method="manageVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "tiles">
+				/managevideo.tiles
+			</result>
+		</action>
+		<action name="deletevideo"
+    			class="com.picvik.action.ManageMediaAction" method="deleteVideo">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="redirectAction">
+            <param name="actionName">managevideo</param>
+			</result>
+		</action>
+		<!-- admin ends here -->
+	</package>
+</struts>

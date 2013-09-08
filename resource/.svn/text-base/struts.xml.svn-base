@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources"
+		value="ApplicationResources" />
+
+	<package name="default" extends="struts-default" namespace="/">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		
+		<interceptors>
+            <interceptor name="nlogin" class="com.picvik.interceptor.LoginInterceptor"/>
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="nlogin"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation"/>
+                <interceptor-ref name="workflow"/>
+            </interceptor-stack>
+        </interceptors>
+        <!-- <default-interceptor-ref name="loginStack"/>  -->
+       
+        <global-results>
+            <result name="login" type="tiles">/login.tiles</result>
+        </global-results>
+
+		
+		<action name="home" 
+			class="com.picvik.action.HomeAction">
+			<interceptor-ref name="loginStack"/>
+			<result name="success" type="tiles">/home.tiles</result>
+			<result name="error" type="tiles">/welcome.tiles</result>
+		</action>
+		<action name="registration" 
+			class="com.picvik.action.RegisterAction" method="execute">
+			<result name="success" type="tiles">/register.tiles</result>
+		</action>
+		<action name="register" 
+			class="com.picvik.action.RegisterAction" method="register">
+			<result name="success" type="tiles">/registerverify.tiles</result>
+			<result name="error" type="tiles">/register.tiles</result>
+			<result name="input" type="tiles">/register.tiles</result>
+		</action>
+		<action name="verify" 
+			class="com.picvik.action.RegisterAction" method="verify">
+			<result name="success" type="tiles">/login.tiles</result>
+			<result name="error" type="tiles">/registerverify.tiles</result>
+		</action>
+        
+         <action name="login" class="com.picvik.action.LoginAction">
+            <result name="success" type="tiles">/home.tiles</result>
+            <result name="input" type="tiles">/login.tiles</result>
+        </action>
+        
+        <action name="dologin" class="com.picvik.action.LoginAction" method="login">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="tiles">/home.tiles</result>
+            <result name="input" type="tiles">/login.tiles</result>
+        </action>
+
+        <action name="logout" class="com.picvik.action.LoginAction" method="logout">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="tiles">/login.tiles</result>
+        </action>
+        
+        <action name="viewprofile" class="com.picvik.action.ViewProfileAction">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="tiles">/viewprofile.tiles</result>
+        </action>
+        <action name="editprofile" class="com.picvik.action.ViewProfileAction">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="tiles">/editprofile.tiles</result>
+        </action>
+        <action name="saveprofile" class="com.picvik.action.ViewProfileAction" method = "saveProfile">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="tiles">/home.tiles</result>
+            <result name="input" type="tiles">/editprofile.tiles</result>
+        </action>
+        
+        <action name="changeprofilephoto" class="com.picvik.action.ChangeProfilePhotoAction">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="tiles">/changephoto.tiles</result>
+            <result name="input" type="tiles">/changephoto.tiles</result>
+        </action>
+        
+        <action name="uploadprofilephoto"
+    			class="com.picvik.action.ChangeProfilePhotoAction" method="uploadProfilePhoto">
+   			 <interceptor-ref name="fileUpload">
+        		<param name="maximumSize">2097152</param>
+        		<param name="allowedTypes">
+            		image/png,image/gif,image/jpeg,image/pjpeg
+       			</param>
+   			</interceptor-ref>
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">viewprofile</param>
+			</result>
+   			<result name="input" type="tiles">/changephoto.tiles</result>
+		</action>
+		
+		<action name="photouploader"
+    			class="com.picvik.action.UploadPhotoAction">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/photoupload.tiles</result>
+		</action>
+		
+		<action name="uploadphoto"
+    			class="com.picvik.action.UploadPhotoAction" method="uploadPhoto">
+   			 <interceptor-ref name="fileUpload">
+        		<param name="maximumSize">2097152</param>
+        		<param name="allowedTypes">
+            		image/png,image/gif,image/jpeg,image/pjpeg
+       			</param>
+   			</interceptor-ref>
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">editphoto</param>
+			</result>
+   			<result name="input" type="tiles">/photoupload.tiles</result>
+		</action>
+		
+		<action name="editphoto"
+    			class="com.picvik.action.UploadPhotoAction" method="editPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">home</param>
+			</result>
+   			<result name="input" type="tiles">/editphoto.tiles</result>
+		</action>
+		<action name="savephotos"
+    			class="com.picvik.action.UploadPhotoAction" method="savePhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+    		<result name="success" type= "redirectAction">
+				<param name="actionName">listalbum</param>
+			</result>
+   			<result name="error" type="tiles">/editphoto.tiles</result>
+		</action>
+		
+		<action name="listalbum"
+    			class="com.picvik.action.ViewAlbumAction" method="listAlbum">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listalbum.tiles</result>
+		</action>
+		
+		<action name="listphoto"
+    			class="com.picvik.action.ViewAlbumAction" method="listPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listphoto.tiles</result>
+		</action>
+		
+		<action name="listalbumphoto"
+    			class="com.picvik.action.ViewAlbumAction" method="listAlbumPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/listalbumphoto.tiles</result>
+		</action>
+		
+		<action name="viewphoto"
+    			class="com.picvik.action.ViewAlbumAction" method="viewPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type="tiles">/viewphoto.tiles</result>
+		</action>
+		
+		<action name="commentonphoto"
+    			class="com.picvik.action.CommentAction" method="commentOnPhoto">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "redirectAction">
+				<param name="actionName">listphoto</param>
+			</result>
+		</action>
+		
+		<action name="commentonalbum"
+    			class="com.picvik.action.CommentAction" method="commentOnAlbum">
+    		<interceptor-ref name="loginStack"></interceptor-ref>
+   			<result name="success" type= "redirectAction">
+				<param name="actionName">listalbum</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

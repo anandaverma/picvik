@@ -1,0 +1,160 @@
+package com.picvik.action;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.picvik.model.ViewAlbumModel;
+import com.picvik.model.ViewAlbum;
+import com.picvik.model.ViewComment;
+import com.picvik.model.ViewPhoto;
+import com.picvik.util.RuntimeSettings;
+
+public class ViewAlbumAction extends ActionSupport {
+
+	private Integer totalalbum;
+	private Integer totalphoto;
+	private ArrayList<ViewAlbum>allAlbums = new ArrayList<ViewAlbum>();
+	private ArrayList<ViewPhoto>allPhotos = new ArrayList<ViewPhoto>();
+	private ArrayList<ViewComment>allcomments = new ArrayList<ViewComment>();
+	private Integer albumid;
+	private String pictureid;
+
+	public String getPictureid() {
+		return pictureid;
+	}
+
+	public void setPictureid(String pictureid) {
+		this.pictureid = pictureid;
+	}
+
+	public ArrayList<ViewAlbum> getAllAlbums() {
+		return allAlbums;
+	}
+
+	public void setAllAlbums(ArrayList<ViewAlbum> allAlbums) {
+		this.allAlbums = allAlbums;
+	}
+
+	public ArrayList<ViewPhoto> getAllPhotos() {
+		return allPhotos;
+	}
+
+	public void setAllPhotos(ArrayList<ViewPhoto> allPhotos) {
+		this.allPhotos = allPhotos;
+	}
+
+	public Integer getTotalphoto() {
+		return totalphoto;
+	}
+
+	public void setTotalphoto(Integer totalphoto) {
+		this.totalphoto = totalphoto;
+	}
+
+	public Integer getTotalalbum() {
+		return totalalbum;
+	}
+
+	public void setTotalalbum(Integer totalalbum) {
+		this.totalalbum = totalalbum;
+	}
+
+	public String listAlbum() {
+		//System.out.println("home");
+		//get uid from session
+		Map sess = (Map) ActionContext.getContext().get("session");
+		Integer uid = (Integer) sess.get("uid");
+		
+		ViewAlbumModel viewalbum = new ViewAlbumModel();
+		//get albums count from db
+		totalalbum = viewalbum.getAlbumCount(uid);
+		//get photo count from db
+		totalphoto = viewalbum.getPhotoCount(uid);
+		
+		//get all albums
+		allAlbums = viewalbum.getAllAlbums(uid);
+		
+		//get photos from db
+		allPhotos = viewalbum.getAllPhotos(uid);
+		return "success";
+		
+	}
+	
+	public String listPhoto() {
+		//System.out.println("home");
+		//get uid from session
+		Map sess = (Map) ActionContext.getContext().get("session");
+		Integer uid = (Integer) sess.get("uid");
+		
+		ViewAlbumModel viewalbum = new ViewAlbumModel();
+		//get albums count from db
+		totalalbum = viewalbum.getAlbumCount(uid);
+		//get photo count from db
+		totalphoto = viewalbum.getPhotoCount(uid);
+		//get all photos from db
+		allPhotos = viewalbum.getAllPhotos(uid);
+		//get all comments on album
+		return "success";
+		
+	}
+	
+	public String viewPhoto() {
+		//System.out.println("home");
+		//get uid from session
+		Map sess = (Map) ActionContext.getContext().get("session");
+		Integer uid = (Integer) sess.get("uid");
+		
+		ViewAlbumModel viewalbum = new ViewAlbumModel();
+		//get albums count from db
+		totalalbum = viewalbum.getAlbumCount(uid);
+		//get photo count from db
+		totalphoto = viewalbum.getPhotoCount(uid);
+		//get all photos from db
+		allPhotos = viewalbum.getPhoto(uid, pictureid);
+		//get all comments on album
+		allcomments = viewalbum.getPhotocomments(pictureid, RuntimeSettings.mediaPhoto);
+		
+		return "success";
+		
+	}
+	
+	public String listAlbumPhoto() {
+		//System.out.println("home");
+		//get uid from session
+		Map sess = (Map) ActionContext.getContext().get("session");
+		Integer uid = (Integer) sess.get("uid");
+		
+		ViewAlbumModel viewalbum = new ViewAlbumModel();
+		//get albums count from db
+		totalalbum = viewalbum.getAlbumCount(uid);
+		//get photo count from db
+		totalphoto = viewalbum.getPhotoCount(uid);
+		//get all albums
+		allAlbums = viewalbum.getAlbumsDetail(uid, albumid);
+		//get all photos from db
+		allPhotos = viewalbum.getAlbumPhotos(uid, albumid);
+		//get all comments on album
+		allcomments = viewalbum.getAlbumcomments(albumid, RuntimeSettings.mediaAlbum);
+		return "success";
+		
+	}
+
+	public ArrayList<ViewComment> getAllcomments() {
+		return allcomments;
+	}
+
+	public void setAllcomments(ArrayList<ViewComment> allcomments) {
+		this.allcomments = allcomments;
+	}
+
+	public Integer getAlbumid() {
+		return albumid;
+	}
+
+	public void setAlbumid(Integer albumid) {
+		this.albumid = albumid;
+	}
+	
+}

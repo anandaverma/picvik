@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/jmx
+END
+LoadBalanceConnectionGroupManagerMBean.class
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/jmx/LoadBalanceConnectionGroupManagerMBean.class
+END
+LoadBalanceConnectionGroupManager.class
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/jmx/LoadBalanceConnectionGroupManager.class
+END

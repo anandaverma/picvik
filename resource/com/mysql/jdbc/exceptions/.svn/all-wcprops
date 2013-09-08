@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions
+END
+MySQLTransientException.class
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLTransientException.class
+END
+MySQLTransientConnectionException.class
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLTransientConnectionException.class
+END
+MySQLStatementCancelledException.class
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLStatementCancelledException.class
+END
+MySQLSyntaxErrorException.class
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLSyntaxErrorException.class
+END
+MySQLTransactionRollbackException.class
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLTransactionRollbackException.class
+END
+DeadlockTimeoutRollbackMarker.class
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/DeadlockTimeoutRollbackMarker.class
+END
+MySQLInvalidAuthorizationSpecException.class
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLInvalidAuthorizationSpecException.class
+END
+MySQLNonTransientException.class
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLNonTransientException.class
+END
+MySQLTimeoutException.class
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLTimeoutException.class
+END
+MySQLIntegrityConstraintViolationException.class
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLIntegrityConstraintViolationException.class
+END
+MySQLNonTransientConnectionException.class
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLNonTransientConnectionException.class
+END
+MySQLDataException.class
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/exceptions/MySQLDataException.class
+END

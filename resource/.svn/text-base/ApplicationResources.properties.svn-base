@@ -1,0 +1,18 @@
+label.username= Username
+label.password= Password
+label.login= Login
+label.register= Registration
+error.login= Invalid Username/Password. Please try again.
+
+username= Username
+email= Email
+password= Password
+retypepassword= Retype Password
+ 
+errors.invalid=${getText(fieldName)} is invalid.
+errors.notsame=Password mismatch.
+errors.required=${getText(fieldName)} is required.
+errors.number=${getText(fieldName)} must be a number.
+errors.range=${getText(fieldName)} is not in the range ${min} and ${max}.
+errors.usernamerange=${getText(fieldName)} should be minimum ${minLength} to maximum ${maxLength}.
+errors.passwordrange=${getText(fieldName)} should be minimum ${minLength}.

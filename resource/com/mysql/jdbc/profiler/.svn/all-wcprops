@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/profiler
+END
+LoggingProfilerEventHandler.class
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/profiler/LoggingProfilerEventHandler.class
+END
+ProfilerEventHandler.class
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/profiler/ProfilerEventHandler.class
+END
+ProfilerEvent.class
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/profiler/ProfilerEvent.class
+END

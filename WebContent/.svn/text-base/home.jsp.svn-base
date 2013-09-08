@@ -1,0 +1,40 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@page import = "com.opensymphony.xwork2.ActionContext;" %>
+
+<div class="page-header">
+	<div class="page-header-content">
+		PICVIK
+	</div>
+</div>
+<div class="page-region">
+<div class="page-region-content">
+
+    <div class="carousel span5" style="height: 300px;" data-role="carousel" data-param-effect="slide" data-param-direction="left" data-param-duration="2000" data-param-period="4000">
+        <div class="slides">
+            <div class="slide image" id="slide1">
+                <img src="ViewResources/images/1.jpg" />
+                <div class="description">
+                
+                    Description text here...
+                </div>
+            </div>
+            <div class="slide image" id="slide2">
+                <img src="ViewResources/images/2.jpg" />
+                <div class="description">
+                    Description text here...
+                </div>
+            </div>
+            <div class="slide image" id="slide3">
+                <img src="ViewResources/images/3.jpg" />
+                <div class="description">
+                    Description text here...
+                </div>
+            </div>
+        </div>
+ 
+        <span class="control left bg-color-blue">&#8249;</span>
+        <span class="control right bg-color-blue">&#8250;</span>
+    </div>
+</div>
+</div>

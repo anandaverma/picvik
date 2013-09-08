@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="baselayout" template="/baselayout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/header.jsp" />
+        <put-attribute name="menu" value="/menu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/footer.jsp" />
+    </definition>
+    <definition name="adminlayout" template="/adminlayout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/adminheader.jsp" />
+        <put-attribute name="menu" value="/menu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/footer.jsp" />
+    </definition>
+    <definition name="/home.tiles" extends="baselayout">
+        <put-attribute name="title" value="Home" />
+        <put-attribute name="body" value="/home.jsp" />
+    </definition>
+    <definition name="/register.tiles" extends="baselayout">
+        <put-attribute name="title" value="Register" />
+        <put-attribute name="body" value="/register.jsp" />
+    </definition>
+    <definition name="/login.tiles" extends="baselayout">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="body" value="/login.jsp" />
+    </definition>
+    <definition name="/registerverify.tiles" extends="baselayout">
+        <put-attribute name="title" value="Verification" />
+        <put-attribute name="body" value="/verify.jsp" />
+    </definition>
+    <definition name="/viewprofile.tiles" extends="baselayout">
+        <put-attribute name="title" value="Profile" />
+        <put-attribute name="body" value="/viewprofile.jsp" />
+    </definition>
+    <definition name="/editprofile.tiles" extends="baselayout">
+        <put-attribute name="title" value="Edit Profile" />
+        <put-attribute name="body" value="/editprofile.jsp" />
+    </definition>
+    <definition name="/changephoto.tiles" extends="baselayout">
+        <put-attribute name="title" value="Change Photo" />
+        <put-attribute name="body" value="/changephoto.jsp" />
+    </definition>
+    <definition name="/photoupload.tiles" extends="baselayout">
+        <put-attribute name="title" value="Upload Photo" />
+        <put-attribute name="body" value="/photoupload.jsp" />
+    </definition>
+    <definition name="/editphoto.tiles" extends="baselayout">
+        <put-attribute name="title" value="Edit Photo" />
+        <put-attribute name="body" value="/editphoto.jsp" />
+    </definition>
+    <definition name="/videoupload.tiles" extends="baselayout">
+        <put-attribute name="title" value="Upload Video" />
+        <put-attribute name="body" value="/videoupload.jsp" />
+    </definition>
+    <definition name="/editvideo.tiles" extends="baselayout">
+        <put-attribute name="title" value="Edit Video" />
+        <put-attribute name="body" value="/editvideo.jsp" />
+    </definition>
+    <definition name="/listalbum.tiles" extends="baselayout">
+        <put-attribute name="title" value="Album List" />
+        <put-attribute name="body" value="/listalbum.jsp" />
+    </definition>
+    <definition name="/listchannel.tiles" extends="baselayout">
+        <put-attribute name="title" value="Channel List" />
+        <put-attribute name="body" value="/listchannel.jsp" />
+    </definition>
+    <definition name="/listphoto.tiles" extends="baselayout">
+        <put-attribute name="title" value="Photo List" />
+        <put-attribute name="body" value="/listphoto.jsp" />
+    </definition>
+    <definition name="/listvideo.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video List" />
+        <put-attribute name="body" value="/listvideo.jsp" />
+    </definition>
+    <definition name="/listalbumphoto.tiles" extends="baselayout">
+        <put-attribute name="title" value="Photo List" />
+        <put-attribute name="body" value="/listalbumphoto.jsp" />
+    </definition>
+    <definition name="/listchannelvideo.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video List" />
+        <put-attribute name="body" value="/listchannelvideo.jsp" />
+    </definition>
+    <definition name="/viewphoto.tiles" extends="baselayout">
+        <put-attribute name="title" value="Photo" />
+        <put-attribute name="body" value="/viewphoto.jsp" />
+    </definition>
+    <definition name="/viewvideo.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/viewvideo.jsp" />
+    </definition>
+    <definition name="/explorealbums.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/explorealbums.jsp" />
+    </definition>
+    <definition name="/explorechannels.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/explorechannels.jsp" />
+    </definition>
+    <definition name="/explorephotos.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/explorephotos.jsp" />
+    </definition>
+    <definition name="/explorevideos.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/explorevideos.jsp" />
+    </definition>
+    <definition name="/viewpublicphotos.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/viewpublicphotos.jsp" />
+    </definition>
+    <definition name="/viewpublicvideos.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/viewpublicvideos.jsp" />
+    </definition>
+    <definition name="/explorealbumphotos.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/explorealbumphotos.jsp" />
+    </definition>
+    <definition name="/explorechannelvideos.tiles" extends="baselayout">
+        <put-attribute name="title" value="Video" />
+        <put-attribute name="body" value="/explorechannelvideos.jsp" />
+    </definition>
+    <definition name="/publicstream.tiles" extends="baselayout">
+        <put-attribute name="title" value="Public Stream" />
+        <put-attribute name="body" value="/publicstream.jsp" />
+    </definition>
+    <definition name="/admin.tiles" extends="baselayout">
+        <put-attribute name="title" value="Administrator Login" />
+        <put-attribute name="body" value="/admin.jsp" />
+    </definition>
+    <definition name="/manageuser.tiles" extends="adminlayout">
+        <put-attribute name="title" value="Manage User" />
+        <put-attribute name="body" value="/manageuser.jsp" />
+    </definition>
+    <definition name="/managephoto.tiles" extends="adminlayout">
+        <put-attribute name="title" value="Manage Photo" />
+        <put-attribute name="body" value="/managephoto.jsp" />
+    </definition>
+    <definition name="/managevideo.tiles" extends="adminlayout">
+        <put-attribute name="title" value="Manage Video" />
+        <put-attribute name="body" value="/managevideo.jsp" />
+    </definition>
+</tiles-definitions>

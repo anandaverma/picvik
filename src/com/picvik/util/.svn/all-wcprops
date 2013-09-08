@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/4/trunk/picvik/src/com/picvik/util
+END
+MySqlConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/6/trunk/picvik/src/com/picvik/util/MySqlConnection.java
+END
+DB.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/4/trunk/picvik/src/com/picvik/util/DB.java
+END
+AU1.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/4/trunk/picvik/src/com/picvik/util/AU1.java
+END
+RuntimeSettings.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/17/trunk/picvik/src/com/picvik/util/RuntimeSettings.java
+END
+MyUtilityFunctions.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/8/trunk/picvik/src/com/picvik/util/MyUtilityFunctions.java
+END
+MyLog.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/4/trunk/picvik/src/com/picvik/util/MyLog.java
+END
+MyFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4/trunk/picvik/src/com/picvik/util/MyFilter.java
+END
+Reporter.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4/trunk/picvik/src/com/picvik/util/Reporter.java
+END

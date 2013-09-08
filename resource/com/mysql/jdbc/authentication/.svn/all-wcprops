@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/authentication
+END
+MysqlNativePasswordPlugin.class
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/authentication/MysqlNativePasswordPlugin.class
+END
+MysqlClearPasswordPlugin.class
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/authentication/MysqlClearPasswordPlugin.class
+END
+MysqlOldPasswordPlugin.class
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/authentication/MysqlOldPasswordPlugin.class
+END
+Sha256PasswordPlugin.class
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/6/trunk/picvik/resource/com/mysql/jdbc/authentication/Sha256PasswordPlugin.class
+END
