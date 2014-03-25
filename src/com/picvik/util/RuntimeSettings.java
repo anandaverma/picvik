@@ -12,8 +12,8 @@ public class RuntimeSettings {
 	public static boolean IS_IN_DEBUG_MODE = true; // false; //
 	public static int portNo = 3306;// 5432; //
 	public static String driverClass = "com.mysql.jdbc.Driver";
-	public static String smtpFrom = "picvik.iiitb@gmail.com";
-	public static String smtpPassword = "iiitb.password";
+	public static String smtpFrom = "yourmail";
+	public static String smtpPassword = "your password";
 	public static Integer statusActive = 1;
 	public static Integer statusInactive = 0;
 	public static Integer statusBanned = 2;
